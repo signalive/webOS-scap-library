@@ -1,0 +1,53 @@
+#=============================================================================
+#   LG ELECTRONICS INC., SEOUL, KOREA                                        =
+#   Copyright(c) 2015 by LG Electronics Inc.                                 =
+#=============================================================================
+
+2015.02.04
+  - Release v1.2
+  support scap_installation.json for an easy setting of SCAP
+  DeviceInfo.getSystemUsageInfo options.cpus, options.memory
+  Signage.captureScreen, options.save for saving the image under content folder also
+  Storage.copyFile options.maxRedirection for 301,302,303, and 307 redirection response
+  Storage.removeAll
+  Storage.readFile
+  Storage.writeFile
+  Storage.statFile
+  Storage.fsync
+  Storage.moveFile
+  Storage.unzipFile
+  Storage.downloadFirmware
+  Storage.upgradeFirmware
+  Storage.getFirmwareUpgradeStatus
+  Storage.changeLogoImage
+  
+2014.10.31
+  - Release v1.1
+  Signage.captureScreen, options.save for saving the image on local storage / options.thumbnail for small size image
+  Storage.removeApplication
+  Storage.upgradeApplication, options.to and options.recovery for usb application
+  Configuration.getServerProperty
+  Configuration.setServerProperty
+  InputSource.initialize, remove options.isLastChannel
+  Storage.copyFile, options.destination supports usb / read copied file by remote application using internal web server
+  Storage.mkdir
+  Storage.removeFile, options.recursive for removing directory
+  Storage.listFiles, list directory
+  Storage.exists
+  Storage.getStorageInfo, supports usb
+  handling network connection is late in the boot up process on remote application mode
+  
+2014.06.11
+  - Official release v1.0
+  
+2014.04.30
+  - Release candidate
+
+2014.3.28
+  - Beta release
+  
+2014.1.22
+  - Alpha release
+    * Review purpose only
+
+    

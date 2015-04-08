@@ -1,0 +1,22 @@
+{
+  "name": "webOS-scap-library",
+  "version": "1.2.21391",
+  "homepage": "http://developer.lge.com/webOSSignage/api/scap12/",
+  "authors": [
+    "LG Electronics Inc."
+  ],
+  "description": "SCAP (Signage Common Application Platform) library provides useful APIs to manage web application and webOS Signage. Your web application should not only show commercial contents but also manage functions, such as getting current screenshot or rebooting the device.",
+  "moduleType": [
+    "globals"
+  ],
+  "license": "Copyright(c) 2015 by LG Electronics Inc.",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "examples",
+    "doc"
+  ]
+}

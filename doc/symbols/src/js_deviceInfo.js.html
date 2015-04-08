@@ -1,0 +1,374 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">/*
+<span class='line'>  2</span>  * This is sound cordova_plugin (TV specific API).
+<span class='line'>  3</span>  * Apache License (2004). See http://www.apache.org/licenses/LICENSE-2.0
+<span class='line'>  4</span>  *
+<span class='line'>  5</span>  * Copyright (c) 2014, LG Electronics, Inc.
+<span class='line'>  6</span>  */</span><span class="WHIT">
+<span class='line'>  7</span> 
+<span class='line'>  8</span> </span><span class="COMM">/**
+<span class='line'>  9</span>  * This represents the deviceInfo API itself, and provides a global namespace for operating deviceInfo service.
+<span class='line'> 10</span>  * @class
+<span class='line'> 11</span>  */</span><span class="WHIT">
+<span class='line'> 12</span> </span><span class="NAME">cordova.define</span><span class="PUNC">(</span><span class="STRN">'cordova/plugin/deviceInfo'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">require</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">exports</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">module</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="COMM">// jshint ignore:line</span><span class="WHIT">
+<span class='line'> 13</span> </span><span class="WHIT">    </span><span class="WHIT">
+<span class='line'> 14</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">service</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 15</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">window.PalmSystem</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT"> </span><span class="COMM">// jshint ignore:line</span><span class="WHIT">
+<span class='line'> 16</span> </span><span class="WHIT">        </span><span class="NAME">console.log</span><span class="PUNC">(</span><span class="STRN">"Window.PalmSystem Available"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// jshint ignore:line</span><span class="WHIT">
+<span class='line'> 17</span> </span><span class="WHIT">        </span><span class="NAME">service</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">require</span><span class="PUNC">(</span><span class="STRN">'cordova/plugin/webos/service'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 18</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 19</span> </span><span class="WHIT">        </span><span class="NAME">service</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 20</span> </span><span class="WHIT">            </span><span class="NAME">Request</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">uri</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">params</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 21</span> </span><span class="WHIT">               </span><span class="NAME">console.log</span><span class="PUNC">(</span><span class="NAME">uri</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">" invoked. But I am a dummy because PalmSystem is not available"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// jshint ignore:line</span><span class="WHIT">
+<span class='line'> 22</span> </span><span class="WHIT">                        </span><span class="WHIT">
+<span class='line'> 23</span> </span><span class="WHIT">               </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="KEYW">typeof</span><span class="WHIT"> </span><span class="NAME">params.onFailure</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="STRN">'function'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 24</span> </span><span class="WHIT">                  </span><span class="NAME">params.onFailure</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">returnValue</span><span class="PUNC">:</span><span class="KEYW">false</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 25</span> </span><span class="WHIT">                     </span><span class="NAME">errorText</span><span class="PUNC">:</span><span class="STRN">"PalmSystem Not Available. Cordova is not installed?"</span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 26</span> </span><span class="WHIT">               </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 27</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 28</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 29</span> 
+<span class='line'> 30</span> </span><span class="WHIT">    </span><span class="COMM">/**
+<span class='line'> 31</span>      * deviceInfo interface
+<span class='line'> 32</span>      */</span><span class="WHIT">
+<span class='line'> 33</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">DeviceInfo</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 34</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 35</span> </span><span class="WHIT">    </span><span class="WHIT">
+<span class='line'> 36</span> </span><span class="WHIT">    </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="NAME">log</span><span class="PUNC">(</span><span class="NAME">msg</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 37</span> </span><span class="WHIT">        </span><span class="COMM">//console.log//will be removed // jshint ignore:line</span><span class="WHIT">
+<span class='line'> 38</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 39</span> </span><span class="WHIT">    </span><span class="WHIT">
+<span class='line'> 40</span> </span><span class="WHIT">    </span><span class="COMM">/**
+<span class='line'> 41</span>      * Gets network information. Network information includes IP address assigned to wireless / wired LAN, gateway address, netmask address and DNS address.
+<span class='line'> 42</span>      * @class DeviceInfo
+<span class='line'> 43</span>      * @param {Function} successCallback success callback function.
+<span class='line'> 44</span>      * @param {Function} errorCallback failure callback function.
+<span class='line'> 45</span>      * @return {Object} 
+<span class='line'> 46</span>      * &lt;div align=left>
+<span class='line'> 47</span>      * &lt;table class="hcap_spec" width=400>
+<span class='line'> 48</span>      *   &lt;thead>&lt;tr>&lt;th>Property&lt;/th>&lt;th>Type&lt;/th>&lt;th>Description&lt;/th>&lt;/tr>&lt;/thead>
+<span class='line'> 49</span>      *   &lt;tbody>
+<span class='line'> 50</span>      *       &lt;tr>&lt;th>isInternetConnectionAvailable&lt;/th>&lt;th>Boolean&lt;/th>&lt;th>Internet connection true: connected, false: not connected&lt;/th>&lt;/tr>
+<span class='line'> 51</span>      *       &lt;tr class="odd">&lt;th>wired&lt;/th>&lt;th>Object&lt;/th>&lt;th>Wired network information object. &lt;/th>&lt;/tr>
+<span class='line'> 52</span>      *       &lt;tr>&lt;th>wired.state&lt;/th>&lt;th>String&lt;/th>&lt;th>Wired network connection "connected": connected "disconnected": not connected&lt;/th>&lt;/tr>     
+<span class='line'> 53</span>      *       &lt;tr class="odd">&lt;th>wired.interfaceName&lt;/th>&lt;th>String&lt;/th>&lt;th>Wired network interface name. &lt;/th>&lt;/tr>
+<span class='line'> 54</span>      *       &lt;tr>&lt;th>wired.ipAddress&lt;/th>&lt;th>String&lt;/th>&lt;th>IP address assigned to the wired network interface. &lt;/th>&lt;/tr>
+<span class='line'> 55</span>      *       &lt;tr class="odd">&lt;th>wired.netmask&lt;/th>&lt;th>String&lt;/th>&lt;th>Netmask address assigned to the wired network interface. &lt;/th>&lt;/tr>
+<span class='line'> 56</span>      *       &lt;tr>&lt;th>wired.gateway&lt;/th>&lt;th>String&lt;/th>&lt;th>Gateway address assigned to the wired network interface&lt;/th>&lt;/tr>
+<span class='line'> 57</span>      *       &lt;tr class="odd">&lt;th>wired.onInternet&lt;/th>&lt;th>String&lt;/th>&lt;th>Internet connection to the wired network "yes": connected "no": not connected. &lt;/th>&lt;/tr>     
+<span class='line'> 58</span>      *       &lt;tr>&lt;th>wired.method&lt;/th>&lt;th>String&lt;/th>&lt;th>IP allocation "fixed": fixed allocation "dhcp": dynamic allocation&lt;/th>&lt;/tr>
+<span class='line'> 59</span>      *       &lt;tr class="odd">&lt;th>wired.dns1&lt;/th>&lt;th>String&lt;/th>&lt;th>DNS address assigned to the wired network interface. &lt;/th>&lt;/tr>     
+<span class='line'> 60</span>      *       &lt;tr>&lt;th>wired.dns2&lt;/th>&lt;th>String&lt;/th>&lt;th>Secondary DNS address assigned to the wired network interface. &lt;/th>&lt;/tr>     
+<span class='line'> 61</span>      *       &lt;tr class="odd">&lt;th>wifi&lt;/th>&lt;th>Object&lt;/th>&lt;th>Wireless network information object. &lt;/th>&lt;/tr>     
+<span class='line'> 62</span>      *       &lt;tr>&lt;th>wifi.state&lt;/th>&lt;th>String&lt;/th>&lt;th>Wireless network connection "connected": connected "disconnected": not connected&lt;/th>&lt;/tr>     
+<span class='line'> 63</span>      *       &lt;tr class="odd">&lt;th>wifi.interfaceName&lt;/th>&lt;th>String&lt;/th>&lt;th>Wireless network interface name. &lt;/th>&lt;/tr>
+<span class='line'> 64</span>      *       &lt;tr>&lt;th>wifi.ipAddress&lt;/th>&lt;th>String&lt;/th>&lt;th>IP address assigned to the wireless network interface. &lt;/th>&lt;/tr>
+<span class='line'> 65</span>      *       &lt;tr class="odd">&lt;th>wifi.netmask&lt;/th>&lt;th>String&lt;/th>&lt;th>Netmask address assigned to the wireless network interface. &lt;/th>&lt;/tr>
+<span class='line'> 66</span>      *       &lt;tr>&lt;th>wifi.gateway&lt;/th>&lt;th>String&lt;/th>&lt;th>Gateway address assigned to the wireless network interface&lt;/th>&lt;/tr>
+<span class='line'> 67</span>      *       &lt;tr class="odd">&lt;th>wifi.onInternet&lt;/th>&lt;th>String&lt;/th>&lt;th>Internet connection to the wireless network "yes": connected "no": not connected. &lt;/th>&lt;/tr>
+<span class='line'> 68</span>      *       &lt;tr>&lt;th>wifi.method&lt;/th>&lt;th>String&lt;/th>&lt;th>IP allocation "fixed": fixed allocation "dhcp": dynamic allocation&lt;/th>&lt;/tr>
+<span class='line'> 69</span>      *       &lt;tr class="odd">&lt;th>wifi.dns1&lt;/th>&lt;th>String&lt;/th>&lt;th>DNS address assigned to the wireless network interface. &lt;/th>&lt;/tr>
+<span class='line'> 70</span>      *       &lt;tr>&lt;th>wifi.dns2&lt;/th>&lt;th>String&lt;/th>&lt;th>Secondary DNS address assigned to the wireless network interface. &lt;/th>&lt;/tr>
+<span class='line'> 71</span>      *   &lt;/tbody>
+<span class='line'> 72</span>      * &lt;/table>
+<span class='line'> 73</span>      * &lt;/div>
+<span class='line'> 74</span>      *
+<span class='line'> 75</span>      * @example
+<span class='line'> 76</span>      * // Javascript code
+<span class='line'> 77</span>      * function getNetworkInformation () {
+<span class='line'> 78</span>      *   function successCb(cbObject) {
+<span class='line'> 79</span>      *      console.log("cbObject : " + JSON.stringify(cbObject));
+<span class='line'> 80</span>      *      console.log("isInternetConnectionAvailable : " + cbObject.isInternetConnectionAvailable);
+<span class='line'> 81</span>      *      console.log("wired.state : " + cbObject.wired.state);
+<span class='line'> 82</span>      *      console.log("wired.method : " + cbObject.wired.method);
+<span class='line'> 83</span>      *      console.log("wired.ipAddress : " + cbObject.wired.ipAddress);
+<span class='line'> 84</span>      *      console.log("wired.netmask : " + cbObject.wired.netmask);
+<span class='line'> 85</span>      *      console.log("wired.dns1 : " + cbObject.wired.dns1);
+<span class='line'> 86</span>      *      console.log("wired.dns2 : " + cbObject.wired.dns2);
+<span class='line'> 87</span>      *      console.log("wifi.state : " + cbObject.wifi.state);
+<span class='line'> 88</span>      *      console.log("wifi.method : " + cbObject.wifi.method);
+<span class='line'> 89</span>      *      console.log("wifi.ipAddress : " + cbObject.wifi.ipAddress);
+<span class='line'> 90</span>      *      console.log("wifi.netmask : " + cbObject.wifi.netmask);
+<span class='line'> 91</span>      *      console.log("wifi.dns1 : " + cbObject.wifi.dns1);
+<span class='line'> 92</span>      *      console.log("wifi.dns2 : " + cbObject.wifi.dns2);
+<span class='line'> 93</span>      *   }
+<span class='line'> 94</span>      *
+<span class='line'> 95</span>      *   function failureCb(cbObject) {
+<span class='line'> 96</span>      *      var errorCode = cbObject.errorCode;
+<span class='line'> 97</span>      *      var errorText = cbObject.errorText;
+<span class='line'> 98</span>      *      console.log ("Error Code [" + errorCode + "]: " + errorText);
+<span class='line'> 99</span>      *   }
+<span class='line'>100</span>      *
+<span class='line'>101</span>      *   var deviceInfo = new DeviceInfo();
+<span class='line'>102</span>      *   deviceInfo.getNetworkInfo(successCb, failureCb);
+<span class='line'>103</span>      * }
+<span class='line'>104</span>      * @since 1.0
+<span class='line'>105</span>      * @see
+<span class='line'>106</span>      * &lt;a href="DevieInfo%23getNetworkMacInfo.html">DeviceInfo.getNetworkMacInfo()&lt;/a>&lt;br>
+<span class='line'>107</span>      */</span><span class="WHIT">
+<span class='line'>108</span> </span><span class="WHIT">    </span><span class="NAME">DeviceInfo.prototype.getNetworkInfo</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">successCallback</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">errorCallback</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>109</span> </span><span class="WHIT">    </span><span class="WHIT">
+<span class='line'>110</span> </span><span class="WHIT">        </span><span class="NAME">log</span><span class="PUNC">(</span><span class="STRN">"getNetworkInfo: "</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>111</span> </span><span class="WHIT">    </span><span class="WHIT">
+<span class='line'>112</span> </span><span class="WHIT">        </span><span class="NAME">service.Request</span><span class="PUNC">(</span><span class="STRN">'luna://com.palm.connectionmanager'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>113</span> </span><span class="WHIT">            </span><span class="NAME">method</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'getstatus'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>114</span> </span><span class="WHIT">            </span><span class="NAME">parameters</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>115</span> </span><span class="WHIT">            </span><span class="NAME">onSuccess</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">result</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>116</span> </span><span class="WHIT">                </span><span class="NAME">log</span><span class="PUNC">(</span><span class="STRN">"getNetworkInfo: onSuccess"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>117</span> </span><span class="WHIT">                </span><span class="KEYW">delete</span><span class="WHIT"> </span><span class="NAME">result.returnValue</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>118</span> </span><span class="WHIT">                </span><span class="NAME">successCallback</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">successCallback</span><span class="PUNC">(</span><span class="NAME">result</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>119</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>120</span> </span><span class="WHIT">            </span><span class="NAME">onFailure</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">error</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>121</span> </span><span class="WHIT">                </span><span class="NAME">log</span><span class="PUNC">(</span><span class="STRN">"getNetworkInfo: onFailure"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>122</span> </span><span class="WHIT">                </span><span class="KEYW">delete</span><span class="WHIT"> </span><span class="NAME">error.returnValue</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>123</span> </span><span class="WHIT">                </span><span class="NAME">errorCallback</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">errorCallback</span><span class="PUNC">(</span><span class="NAME">error</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>124</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>125</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>126</span> </span><span class="WHIT">        </span><span class="WHIT">
+<span class='line'>127</span> </span><span class="WHIT">        </span><span class="NAME">log</span><span class="PUNC">(</span><span class="STRN">"DeviceInfo.getNetworkInfo Done"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>128</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>129</span> </span><span class="WHIT">    </span><span class="WHIT">
+<span class='line'>130</span> </span><span class="WHIT">    </span><span class="COMM">/**
+<span class='line'>131</span>      * Gets network MAC information.
+<span class='line'>132</span>      * @class DeviceInfo
+<span class='line'>133</span>      * @param {Function} successCallback success callback function.
+<span class='line'>134</span>      * @param {Function} errorCallback failure callback function.
+<span class='line'>135</span>      * @return {Object} 
+<span class='line'>136</span>      * &lt;div align=left>
+<span class='line'>137</span>      * &lt;table class="hcap_spec" width=400>
+<span class='line'>138</span>      *   &lt;thead>&lt;tr>&lt;th>Property&lt;/th>&lt;th>Type&lt;/th>&lt;th>Description&lt;/th>&lt;/tr>&lt;/thead>
+<span class='line'>139</span>      *   &lt;tbody>
+<span class='line'>140</span>      *       &lt;tr>&lt;th>wiredInfo&lt;/th>&lt;th>Object&lt;/th>&lt;th>An object that has MAC address of the wired network interface. &lt;/th>&lt;/tr>     
+<span class='line'>141</span>      *       &lt;tr class="odd">&lt;th>wiredInfo.macAddress&lt;/th>&lt;th>String&lt;/th>&lt;th>MAC address of the wired network interface. &lt;/th>&lt;/tr>
+<span class='line'>142</span>      *       &lt;tr>&lt;th>wifiInfo&lt;/th>&lt;th>Object&lt;/th>&lt;th>An object that has MAC address of the wireless network interface. &lt;/th>&lt;/tr>
+<span class='line'>143</span>      *       &lt;tr class="odd">&lt;th>wifiInfo.macAddress&lt;/th>&lt;th>String&lt;/th>&lt;th>MAC address of the wireless network interface. &lt;/th>&lt;/tr>
+<span class='line'>144</span>      *   &lt;/tbody>
+<span class='line'>145</span>      * &lt;/table>
+<span class='line'>146</span>      * &lt;/div>
+<span class='line'>147</span>      *
+<span class='line'>148</span>      * @example
+<span class='line'>149</span>      * // Javascript code
+<span class='line'>150</span>      * function getNetworkMacInformation () {
+<span class='line'>151</span>      *   function successCb(cbObject) {
+<span class='line'>152</span>      *      console.log("cbObject : " + JSON.stringify(cbObject));
+<span class='line'>153</span>      *      console.log("wiredInfo.macAddress : " + cbObject.wiredInfo.macAddress);
+<span class='line'>154</span>      *      console.log("wifiInfo.macAddress : " + cbObject.wifiInfo.macAddress);
+<span class='line'>155</span>      *
+<span class='line'>156</span>      *      // Do something
+<span class='line'>157</span>      *         ...
+<span class='line'>158</span>      *   }
+<span class='line'>159</span>      *
+<span class='line'>160</span>      *   function failureCb(cbObject) {
+<span class='line'>161</span>      *      var errorCode = cbObject.errorCode;
+<span class='line'>162</span>      *      var errorText = cbObject.errorText;
+<span class='line'>163</span>      *      console.log ("Error Code [" + errorCode + "]: " + errorText);
+<span class='line'>164</span>      *   }
+<span class='line'>165</span>      *
+<span class='line'>166</span>      *   var deviceInfo = new DeviceInfo();
+<span class='line'>167</span>      *   deviceInfo.getNetworkMacInfo(successCb, failureCb);
+<span class='line'>168</span>      * }
+<span class='line'>169</span>      * @since 1.0
+<span class='line'>170</span>      * @see
+<span class='line'>171</span>      * &lt;a href="DevieInfo%23getNetworkInfo.html">DeviceInfo.getNetworkInfo()&lt;/a>&lt;br>
+<span class='line'>172</span>      */</span><span class="WHIT">
+<span class='line'>173</span> </span><span class="WHIT">    </span><span class="NAME">DeviceInfo.prototype.getNetworkMacInfo</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">successCallback</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">errorCallback</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>174</span> </span><span class="WHIT">    </span><span class="WHIT">
+<span class='line'>175</span> </span><span class="WHIT">        </span><span class="NAME">log</span><span class="PUNC">(</span><span class="STRN">"getNetworkMacInfo: "</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>176</span> </span><span class="WHIT">        </span><span class="WHIT">
+<span class='line'>177</span> </span><span class="WHIT">        </span><span class="NAME">service.Request</span><span class="PUNC">(</span><span class="STRN">'luna://com.webos.service.tv.signage'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>178</span> </span><span class="WHIT">            </span><span class="NAME">method</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'getinfo'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>179</span> </span><span class="WHIT">            </span><span class="NAME">parameters</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>180</span> </span><span class="WHIT">            </span><span class="NAME">onSuccess</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">result</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>181</span> </span><span class="WHIT">                </span><span class="NAME">log</span><span class="PUNC">(</span><span class="STRN">"getNetworkMacInfo: onSuccess"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>182</span> </span><span class="WHIT">                </span><span class="KEYW">delete</span><span class="WHIT"> </span><span class="NAME">result.returnValue</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>183</span> </span><span class="WHIT">                </span><span class="NAME">successCallback</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">successCallback</span><span class="PUNC">(</span><span class="NAME">result</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>184</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>185</span> </span><span class="WHIT">            </span><span class="NAME">onFailure</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">error</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>186</span> </span><span class="WHIT">                </span><span class="NAME">log</span><span class="PUNC">(</span><span class="STRN">"getNetworkMacInfo: onFailure"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>187</span> </span><span class="WHIT">                </span><span class="KEYW">delete</span><span class="WHIT"> </span><span class="NAME">error.returnValue</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>188</span> </span><span class="WHIT">                </span><span class="NAME">errorCallback</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">errorCallback</span><span class="PUNC">(</span><span class="NAME">error</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>189</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>190</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>191</span> </span><span class="WHIT">        </span><span class="WHIT">
+<span class='line'>192</span> </span><span class="WHIT">        </span><span class="NAME">log</span><span class="PUNC">(</span><span class="STRN">"DeviceInfo.getNetworkMacInfo Done"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>193</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>194</span> </span><span class="WHIT">    </span><span class="WHIT">
+<span class='line'>195</span> </span><span class="WHIT">    </span><span class="COMM">/**
+<span class='line'>196</span>      * Gets device platform information. Platform information includes manufacturer, model name, software version, hardware version and product serial number.
+<span class='line'>197</span>      * @class DeviceInfo
+<span class='line'>198</span>      * @param {Function} successCallback success callback function.
+<span class='line'>199</span>      * @param {Function} errorCallback failure callback function.
+<span class='line'>200</span>      * @return {Object} 
+<span class='line'>201</span>      * &lt;div align=left>
+<span class='line'>202</span>      * &lt;table class="hcap_spec" width=400>
+<span class='line'>203</span>      *   &lt;thead>&lt;tr>&lt;th>Property&lt;/th>&lt;th>Type&lt;/th>&lt;th>Description&lt;/th>&lt;/tr>&lt;/thead>
+<span class='line'>204</span>      *   &lt;tbody>
+<span class='line'>205</span>      *       &lt;tr>&lt;th>hardwareVersion&lt;/th>&lt;th>String&lt;/th>&lt;th>hardware version of signage monitor. &lt;/th>&lt;/tr>     
+<span class='line'>206</span>      *       &lt;tr class="odd">&lt;th>manufacturer&lt;/th>&lt;th>String&lt;/th>&lt;th>manufacturer of signage monitor. &lt;/th>&lt;/tr>
+<span class='line'>207</span>      *       &lt;tr>&lt;th>modelName&lt;/th>&lt;th>String&lt;/th>&lt;th>signage monitor model name. &lt;/th>&lt;/tr>     
+<span class='line'>208</span>      *       &lt;tr class="odd">&lt;th>sdkVersion&lt;/th>&lt;th>String&lt;/th>&lt;th>SDK version of signage monitor. &lt;/th>&lt;/tr>
+<span class='line'>209</span>      *       &lt;tr>&lt;th>serialNumber&lt;/th>&lt;th>String&lt;/th>&lt;th>signage monitor serial number. &lt;/th>&lt;/tr>
+<span class='line'>210</span>      *       &lt;tr class="odd">&lt;th>firmwareVersion&lt;/th>&lt;th>String&lt;/th>&lt;th>firmware version of signage monitor. &lt;/th>&lt;/tr>
+<span class='line'>211</span>      *   &lt;/tbody>
+<span class='line'>212</span>      * &lt;/table>
+<span class='line'>213</span>      * &lt;/div>
+<span class='line'>214</span>      *
+<span class='line'>215</span>      * @example
+<span class='line'>216</span>      * // Javascript code
+<span class='line'>217</span>      * function getPlatformInfo () {
+<span class='line'>218</span>      *   function successCb(cbObject) {
+<span class='line'>219</span>      *      console.log("cbObject : " + JSON.stringify(cbObject));
+<span class='line'>220</span>      *      console.log("hardwareVersion : " + cbObject.hardwareVersion);
+<span class='line'>221</span>      *      console.log("modelName : " + cbObject.modelName);
+<span class='line'>222</span>      *      console.log("sdkVersion : " + cbObject.sdkVersion);
+<span class='line'>223</span>      *      console.log("serialNumber : " + cbObject.serialNumber);
+<span class='line'>224</span>      *      console.log("firmwareVersion : " + cbObject.firmwareVersion);
+<span class='line'>225</span>      *
+<span class='line'>226</span>      *      // Do something
+<span class='line'>227</span>      *         ...
+<span class='line'>228</span>      *   }
+<span class='line'>229</span>      *
+<span class='line'>230</span>      *   function failureCb(cbObject) {
+<span class='line'>231</span>      *      var errorCode = cbObject.errorCode;
+<span class='line'>232</span>      *      var errorText = cbObject.errorText;
+<span class='line'>233</span>      *      console.log ("Error Code [" + errorCode + "]: " + errorText);
+<span class='line'>234</span>      *   }
+<span class='line'>235</span>      *
+<span class='line'>236</span>      *   var deviceInfo = new DeviceInfo();
+<span class='line'>237</span>      *   deviceInfo.getPlatformInfo(successCb, failureCb);
+<span class='line'>238</span>      * }
+<span class='line'>239</span>      * @since 1.0
+<span class='line'>240</span>      * @see
+<span class='line'>241</span>      * &lt;a href="DevieInfo%23getNetworkMacInfo.html">DeviceInfo.getNetworkMacInfo()&lt;/a>&lt;br>
+<span class='line'>242</span>      */</span><span class="WHIT">
+<span class='line'>243</span> </span><span class="WHIT">    </span><span class="NAME">DeviceInfo.prototype.getPlatformInfo</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">successCallback</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">errorCallback</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>244</span> </span><span class="WHIT">    </span><span class="WHIT">
+<span class='line'>245</span> </span><span class="WHIT">        </span><span class="NAME">log</span><span class="PUNC">(</span><span class="STRN">"getPlatformInfo: "</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>246</span> </span><span class="WHIT">        </span><span class="WHIT">
+<span class='line'>247</span> </span><span class="WHIT">        </span><span class="NAME">service.Request</span><span class="PUNC">(</span><span class="STRN">'luna://com.webos.service.tv.systemproperty'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>248</span> </span><span class="WHIT">            </span><span class="NAME">method</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'getSystemInfo'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>249</span> </span><span class="WHIT">            </span><span class="NAME">parameters</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>250</span> </span><span class="WHIT">                </span><span class="NAME">keys</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="STRN">"modelName"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"serialNumber"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"firmwareVersion"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"hardwareVersion"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"sdkVersion"</span><span class="PUNC">]</span><span class="WHIT">
+<span class='line'>251</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>252</span> </span><span class="WHIT">            </span><span class="NAME">onSuccess</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">result</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>253</span> </span><span class="WHIT">                </span><span class="NAME">log</span><span class="PUNC">(</span><span class="STRN">"getPlatformInfo: onSuccess"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>254</span> </span><span class="WHIT">                </span><span class="NAME">result.manufacturer</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"LGE"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>255</span> </span><span class="WHIT">                </span><span class="NAME">result.sdkVersion</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"1.2.21391"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>256</span> </span><span class="WHIT">                </span><span class="KEYW">delete</span><span class="WHIT"> </span><span class="NAME">result.returnValue</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>257</span> </span><span class="WHIT">                </span><span class="KEYW">delete</span><span class="WHIT"> </span><span class="NAME">result.errorText</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>258</span> </span><span class="WHIT">                </span><span class="NAME">successCallback</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">successCallback</span><span class="PUNC">(</span><span class="NAME">result</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>259</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>260</span> </span><span class="WHIT">            </span><span class="NAME">onFailure</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">error</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>261</span> </span><span class="WHIT">                </span><span class="NAME">log</span><span class="PUNC">(</span><span class="STRN">"getPlatformInfo: onFailure"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>262</span> </span><span class="WHIT">                </span><span class="KEYW">delete</span><span class="WHIT"> </span><span class="NAME">error.returnValue</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>263</span> </span><span class="WHIT">                </span><span class="NAME">errorCallback</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">errorCallback</span><span class="PUNC">(</span><span class="NAME">error</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>264</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>265</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>266</span> </span><span class="WHIT">        </span><span class="WHIT">
+<span class='line'>267</span> </span><span class="WHIT">        </span><span class="NAME">log</span><span class="PUNC">(</span><span class="STRN">"DeviceInfo.getPlatformInfo Done"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>268</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>269</span> 
+<span class='line'>270</span> </span><span class="WHIT">    </span><span class="COMM">/**
+<span class='line'>271</span>      * Gets device usage information. Usage information includes cpu and memory status.
+<span class='line'>272</span>      * @class DeviceInfo
+<span class='line'>273</span>      * @param {Function} successCallback success callback function.
+<span class='line'>274</span>      * @param {Function} errorCallback failure callback function.
+<span class='line'>275</span>      * @param {Object} options
+<span class='line'>276</span>      * &lt;div align=left>
+<span class='line'>277</span>      * &lt;table class="hcap_spec" width=400>
+<span class='line'>278</span>      *   &lt;thead>&lt;tr>&lt;th>Property&lt;/th>&lt;th>Type&lt;/th>&lt;th>Description&lt;/th>&lt;th>Required&lt;/th>&lt;/tr>&lt;/thead>
+<span class='line'>279</span>      *   &lt;tbody>
+<span class='line'>280</span>      *       &lt;tr>&lt;th>cpus&lt;/th>&lt;th>Boolean&lt;/th>&lt;th>true to get CPU information, false otherwise.&lt;/th>&lt;th>optional&lt;/th>&lt;/tr>
+<span class='line'>281</span>      *       &lt;tr class="odd">&lt;th>memory&lt;/th>&lt;th>Boolean&lt;/th>&lt;th>true to get memory information, false otherwise.&lt;/th>&lt;th>optional&lt;/th>&lt;/tr>
+<span class='line'>282</span>      *   &lt;/tbody>
+<span class='line'>283</span>      * &lt;/table>
+<span class='line'>284</span>      * &lt;/div>
+<span class='line'>285</span>      * @return {Object} 
+<span class='line'>286</span>      * &lt;div align=left>
+<span class='line'>287</span>      * &lt;table class="hcap_spec" width=400>
+<span class='line'>288</span>      *   &lt;thead>&lt;tr>&lt;th>Property&lt;/th>&lt;th>Type&lt;/th>&lt;th>Description&lt;/th>&lt;th>Available&lt;/th>&lt;/tr>&lt;/thead>
+<span class='line'>289</span>      *   &lt;tbody>
+<span class='line'>290</span>      *       &lt;tr>&lt;th>cpus&lt;/th>&lt;th>Array&lt;/th>&lt;th>Array of objects containing information about each CPU/core installed: model, and times &lt;br>(an object containing the number of milliseconds the CPU/core spent in: user, nice, sys, idle, and irq).&lt;/th>&lt;th>optional&lt;/th>&lt;/tr>
+<span class='line'>291</span>      *       &lt;tr class="odd">&lt;tr>&lt;th>memory&lt;/th>&lt;th>Object&lt;/th>&lt;th>Object containing total and free member fields. &lt;br>'total' is total amount of system memory in bytes and 'free' is amount of free memory in bytes.&lt;/th>&lt;th>optional&lt;/th>&lt;/tr>     
+<span class='line'>292</span>      *   &lt;/tbody>
+<span class='line'>293</span>      * &lt;/table>
+<span class='line'>294</span>      * &lt;/div>
+<span class='line'>295</span>      *
+<span class='line'>296</span>      * @example
+<span class='line'>297</span>      * // Javascript code
+<span class='line'>298</span>      * function getSystemUsageInfo() {
+<span class='line'>299</span>      *   function successCb(cbObject) {
+<span class='line'>300</span>      *      console.log("cbObject : " + JSON.stringify(cbObject));
+<span class='line'>301</span>      *      console.log("memory.total : " + cbObject.memory.total);
+<span class='line'>302</span>      *      console.log("memory.free : " + cbObject.memory.free);
+<span class='line'>303</span>      *
+<span class='line'>304</span>      *      for (var i in cbObject.cpus) {
+<span class='line'>305</span>      *         console.log("cpu.model " +  cbObject.cpus[i].model);
+<span class='line'>306</span>      *         console.log("cpu.times.user " +  cbObject.cpus[i].times.user);
+<span class='line'>307</span>      *         console.log("cpu.times.nice " +  cbObject.cpus[i].times.nice);
+<span class='line'>308</span>      *         console.log("cpu.times.sys " +  cbObject.cpus[i].times.sys);
+<span class='line'>309</span>      *         console.log("cpu.times.idle " +  cbObject.cpus[i].times.idle);
+<span class='line'>310</span>      *         console.log("cpu.times.irq " +  cbObject.cpus[i].times.irq);
+<span class='line'>311</span>      *      } 
+<span class='line'>312</span>      *      // Do something
+<span class='line'>313</span>      *   }
+<span class='line'>314</span>      *
+<span class='line'>315</span>      *   function failureCb(cbObject) {
+<span class='line'>316</span>      *      var errorCode = cbObject.errorCode;
+<span class='line'>317</span>      *      var errorText = cbObject.errorText;
+<span class='line'>318</span>      *      console.log ("Error Code [" + errorCode + "]: " + errorText);
+<span class='line'>319</span>      *   }
+<span class='line'>320</span>      *
+<span class='line'>321</span>      *   var deviceInfo = new DeviceInfo();
+<span class='line'>322</span>      *   var options = {cpus : true, memory : true};
+<span class='line'>323</span>      *   deviceInfo.getSystemUsageInfo(successCb, failureCb, options);
+<span class='line'>324</span>      * }
+<span class='line'>325</span>      * @since 1.2
+<span class='line'>326</span>      * @see
+<span class='line'>327</span>      * &lt;a href="DevieInfo%23getPlatformInfo.html">DeviceInfo.getPlatformInfo()&lt;/a>&lt;br>
+<span class='line'>328</span>      */</span><span class="WHIT">
+<span class='line'>329</span> </span><span class="WHIT">    </span><span class="NAME">DeviceInfo.prototype.getSystemUsageInfo</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">successCallback</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">errorCallback</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">options</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>330</span> </span><span class="WHIT">        </span><span class="WHIT">
+<span class='line'>331</span> </span><span class="WHIT">        </span><span class="NAME">log</span><span class="PUNC">(</span><span class="STRN">"getSystemUsageInfo: "</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>332</span> </span><span class="WHIT">        </span><span class="WHIT">
+<span class='line'>333</span> </span><span class="WHIT">        </span><span class="NAME">service.Request</span><span class="PUNC">(</span><span class="STRN">"luna://com.webos.service.commercial.signage.storageservice"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>334</span> </span><span class="WHIT">            </span><span class="NAME">method</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"getSystemUsageInfo"</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>335</span> </span><span class="WHIT">            </span><span class="NAME">parameters</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>336</span> </span><span class="WHIT">                </span><span class="NAME">cpus</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">options.cpus</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>337</span> </span><span class="WHIT">                </span><span class="NAME">memory</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">options.memory</span><span class="WHIT">
+<span class='line'>338</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>339</span> </span><span class="WHIT">            </span><span class="NAME">onSuccess</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">result</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>340</span> </span><span class="WHIT">                </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">result.returnValue</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>341</span> </span><span class="WHIT">                    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>342</span> </span><span class="WHIT">                    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="KEYW">typeof</span><span class="WHIT"> </span><span class="NAME">result.memory</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="STRN">'undefined'</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>343</span> </span><span class="WHIT">                    	</span><span class="NAME">ret.memory</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">result.memory</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>344</span> </span><span class="WHIT">                    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>345</span> </span><span class="WHIT">                    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="KEYW">typeof</span><span class="WHIT"> </span><span class="NAME">result.cpus</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="STRN">'undefined'</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>346</span> </span><span class="WHIT">                        </span><span class="NAME">ret.cpus</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">result.cpus</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>347</span> </span><span class="WHIT">                    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>348</span> </span><span class="WHIT">                    </span><span class="NAME">successCallback</span><span class="PUNC">(</span><span class="NAME">ret</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>349</span> </span><span class="WHIT">                </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>350</span> </span><span class="WHIT">                    </span><span class="NAME">errorCallback</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="NAME">errorCode</span><span class="PUNC">:</span><span class="NAME">result.errorCode</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">errorText</span><span class="PUNC">:</span><span class="NAME">result.errorText</span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>351</span> </span><span class="WHIT">                </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>352</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>353</span> </span><span class="WHIT">            </span><span class="NAME">onFailure</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">result</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>354</span> </span><span class="WHIT">                </span><span class="NAME">errorCallback</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="NAME">errorCode</span><span class="PUNC">:</span><span class="NAME">result.errorCode</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">errorText</span><span class="PUNC">:</span><span class="NAME">result.errorText</span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>355</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>356</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>357</span> </span><span class="WHIT">        </span><span class="WHIT">
+<span class='line'>358</span> </span><span class="WHIT">        </span><span class="NAME">log</span><span class="PUNC">(</span><span class="STRN">"DeviceInfo.getSystemUsageInfo Done"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>359</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>360</span> </span><span class="WHIT">    </span><span class="WHIT">
+<span class='line'>361</span> 
+<span class='line'>362</span> </span><span class="WHIT">    </span><span class="NAME">module.exports</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">DeviceInfo</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>363</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>364</span> 
+<span class='line'>365</span> </span><span class="NAME">DeviceInfo</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">cordova.require</span><span class="PUNC">(</span><span class="STRN">'cordova/plugin/deviceInfo'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// jshint ignore:line</span><span class="WHIT">
+<span class='line'>366</span> 
+<span class='line'>367</span> </span></pre></body></html>
