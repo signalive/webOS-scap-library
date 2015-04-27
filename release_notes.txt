@@ -1,0 +1,18 @@
+#=============================================================================
+#   LG ELECTRONICS INC., SEOUL, KOREA                                        =
+#   Copyright(c) 2014 by LG Electronics Inc.                                 =
+#=============================================================================
+2014.06.11
+  - Official release v1.0
+  
+2014.04.30
+  - Release candidate
+
+2014.3.28
+  - Beta release
+  
+2014.1.22
+  - Alpha release
+    * Review purpose only
+
+    

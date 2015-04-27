@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>Signage SDK Code Example</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf8"/>
+		
+		<!-- Use your remote cordova-cd library location 		 -->
+		<script type="text/javascript" src="../js/cordova/2.7.0/cordova.webos.js"></script>  
+		<script type="text/javascript" src="../js/cordova-cd/1.0/signage.js"></script>
+		<script type="text/javascript" src="../js/cordova-cd/1.0/storage.js"></script>  
+		<script type="text/javascript" src="../js/cordova-cd/1.0/configuration.js"></script>  
+		<script type="text/javascript" src="../js/cordova-cd/1.0/deviceInfo.js"></script>  
+		<script type="text/javascript" src="../js/cordova-cd/1.0/inputSource.js"></script>  
+		<script type="text/javascript" src="../js/cordova-cd/1.0/power.js"></script>  
+		<script type="text/javascript" src="../js/cordova-cd/1.0/sound.js"></script>  
+		<script type="text/javascript" src="../js/cordova-cd/1.0/video.js"></script>  
+		
+		<script src="./sample_helper.js"></script>
+		<script>
+		function land(){
+		var successCb = function (){
+		console.log("successfully Set");
+		callback("Set portrait mode successful");
+	};
+
+	// Callback for a failed execution.
+	// Failure callback will be invoked with the error code and the error text.
+	var failureCb = function(cbObject){
+		var errorCode = cbObject.errorCode;
+		var errorText = cbObject.errorText;
+		console.log( " Error Code [" + errorCode + "]: " + errorText); 
+		callback(cbObject);
+	};
+
+	// Portrait Mode to set.
+	// Refer to the Signage.OsdPortraitMode for more information.
+	var options = {
+			portraitMode : Signage.OsdPortraitMode.OFF
+	};
+	
+	// Create signage object and invoke the API with parameters.
+	var signage = new Signage();
+	signage.setPortraitMode(successCb, failureCb, options);
+	}
+		</script>
+
+    <link rel="stylesheet" type="text/css" href="./style/style.css">
+
+	</head>
+	<body onload = "getAPIList('sidebarDiv'); land();">
+	  <div class='sidebar'  id='sidebarDiv'>
+      </div>
+      
+      <div class='contents'>
+      <h4>sample code</h4>
+	  <textarea class = 'javascript_code' id = 'code_area' readOnly = 'true' rows='10' cols='50' defaultValue='Code here'></textarea>	
+	  <h4>returned</h4>
+	  <textarea class = 'code_area' id = 'return_value_area' rows=20 cols='50'></textarea>	
+	  
+      </div>
+      
+      <div id = "videoDiv" style="width:40px; height:38px position:absolute;right:0;bottom:0">
+	  </div>
+	  
+	</body>
+</html>

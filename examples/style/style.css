@@ -1,0 +1,16 @@
+@CHARSET "EUC-KR";
+
+.sidebar {
+	width:250px;
+	height:1000px;
+	padding:10px;
+	float:left;
+	background-color:#bbbbbb;
+}
+
+.contents {
+	left:300px;
+	padding:10px;
+	position:absolute;
+	background-color:white;
+}
