@@ -3,7 +3,7 @@
  *
  * @constructor
  */
-var Configuration = function () {};
+function Configuration() {}
 
 
 /**
