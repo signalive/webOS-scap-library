@@ -1,0 +1,19 @@
+{
+  "name": "webOS-scap-library",
+  "version": "1.3.22102",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/signalive/webOS-scap-library.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/signalive/webOS-scap-library/issues"
+  },
+  "homepage": "https://github.com/signalive/webOS-scap-library#readme"
+}
