@@ -437,9 +437,158 @@
 <span class='line'>430</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>431</span> </span><span class="WHIT">    </span><span class="WHIT">
 <span class='line'>432</span> 
-<span class='line'>433</span> </span><span class="WHIT">    </span><span class="NAME">module.exports</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">Video</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>434</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>435</span> 
-<span class='line'>436</span> </span><span class="NAME">Video</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">cordova.require</span><span class="PUNC">(</span><span class="STRN">'cordova/plugin/video'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// jshint ignore:line</span><span class="WHIT">
-<span class='line'>437</span> 
-<span class='line'>438</span> </span></pre></body></html>
+<span class='line'>433</span> </span><span class="WHIT">    </span><span class="COMM">/**
+<span class='line'>434</span>      * Sets content rotation.&lt;br>
+<span class='line'>435</span>      * &lt;br>
+<span class='line'>436</span>      * Note :Only full screen video rotation is supported.
+<span class='line'>437</span>      *   
+<span class='line'>438</span>      * @class Video
+<span class='line'>439</span>      * @param {Function} successCallback success callback function.
+<span class='line'>440</span>      * @param {Function} errorCallback failure callback function.
+<span class='line'>441</span>      * @param {Object} options 
+<span class='line'>442</span>      * 
+<span class='line'>443</span>      * &lt;div align=left>
+<span class='line'>444</span>      * &lt;table class="hcap_spec" width=400>
+<span class='line'>445</span>      *   &lt;thead>&lt;tr>&lt;th>Property&lt;/th>&lt;th>Type&lt;/th>&lt;th>Description&lt;/th>&lt;th>Required&lt;/th>&lt;/tr>&lt;/thead>
+<span class='line'>446</span>      *   &lt;tbody>
+<span class='line'>447</span>      *       &lt;tr>&lt;th>degree&lt;/th>&lt;th>String&lt;/th>&lt;th>"off", "90", or "270"&lt;/th>&lt;th>required&lt;/th>&lt;/tr>
+<span class='line'>448</span>      *       &lt;tr class="odd">&lt;tr>&lt;th>aspectRatio&lt;/th>&lt;th>String&lt;/th>&lt;th>"full" or "original" &lt;/th>&lt;th>required&lt;/th>&lt;/tr>
+<span class='line'>449</span>      *   &lt;/tbody>
+<span class='line'>450</span>      * &lt;/table>
+<span class='line'>451</span>      * 
+<span class='line'>452</span>      * @return &lt;p>If the method is successfully executed, success callback function is called without a parameter.&lt;/br>
+<span class='line'>453</span>      * If an error occurs, failure callback function is called with a failure callback object as a parameter.&lt;/p>
+<span class='line'>454</span>      * @example
+<span class='line'>455</span>      * // Javascript code
+<span class='line'>456</span>      * function setContentRotation () {
+<span class='line'>457</span>      *   var options = {degree : "90", aspectRatio : "full"};
+<span class='line'>458</span>      *     
+<span class='line'>459</span>      *   function successCb() {
+<span class='line'>460</span>      *      // Do something
+<span class='line'>461</span>      *   }
+<span class='line'>462</span>      *
+<span class='line'>463</span>      *   function failureCb(cbObject) {
+<span class='line'>464</span>      *      var errorCode = cbObject.errorCode;
+<span class='line'>465</span>      *      var errorText = cbObject.errorText;
+<span class='line'>466</span>      *      console.log ("Error Code [" + errorCode + "]: " + errorText);
+<span class='line'>467</span>      *   }
+<span class='line'>468</span>      *
+<span class='line'>469</span>      *   var video = new Video();
+<span class='line'>470</span>      *   video.setContentRotation(successCb, failureCb, options);
+<span class='line'>471</span>      * }
+<span class='line'>472</span>      * @since 1.3
+<span class='line'>473</span>      * @see
+<span class='line'>474</span>      * &lt;a href="Video%23getContentRotation.html">Video.getContentRotation()&lt;/a>&lt;br>
+<span class='line'>475</span>      */</span><span class="WHIT">
+<span class='line'>476</span> </span><span class="WHIT">    </span><span class="NAME">Video.prototype.setContentRotation</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">successCallback</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">errorCallback</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">options</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>477</span> </span><span class="WHIT">        </span><span class="WHIT">
+<span class='line'>478</span> </span><span class="WHIT">        </span><span class="NAME">log</span><span class="PUNC">(</span><span class="STRN">"setContentRotation: "</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>479</span> </span><span class="WHIT">        </span><span class="WHIT">
+<span class='line'>480</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="KEYW">typeof</span><span class="WHIT"> </span><span class="NAME">options</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="STRN">"undefined"</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="NAME">options</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="WHIT">
+<span class='line'>481</span> </span><span class="WHIT">                </span><span class="PUNC">(</span><span class="NAME">options.degree</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="STRN">"off"</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">options.degree</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="STRN">"90"</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">options.degree</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="STRN">"270"</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT">
+<span class='line'>482</span> </span><span class="WHIT">                </span><span class="PUNC">(</span><span class="NAME">options.aspectRatio</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="STRN">"full"</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">options.aspectRatio</span><span class="WHIT"> </span><span class="PUNC">!=</span><span class="WHIT"> </span><span class="STRN">"original"</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>483</span> </span><span class="WHIT">            </span><span class="WHIT">
+<span class='line'>484</span> </span><span class="WHIT">            </span><span class="NAME">checkErrorCodeNText</span><span class="PUNC">(</span><span class="NAME">result</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"VSCR"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"Video.setContentRotation invlalid parameters."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>485</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>486</span> </span><span class="WHIT">        </span><span class="WHIT">
+<span class='line'>487</span> </span><span class="WHIT">        </span><span class="NAME">service.Request</span><span class="PUNC">(</span><span class="STRN">"luna://com.webos.service.commercial.signage.storageservice/video/"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>488</span> </span><span class="WHIT">            </span><span class="NAME">method</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"setContentRotation"</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>489</span> </span><span class="WHIT">            </span><span class="NAME">parameters</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">options</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>490</span> </span><span class="WHIT">            </span><span class="NAME">onSuccess</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">result</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>491</span> </span><span class="WHIT">                </span><span class="NAME">log</span><span class="PUNC">(</span><span class="STRN">"setContentRotation: On Success"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>492</span> </span><span class="WHIT">                </span><span class="WHIT">
+<span class='line'>493</span> </span><span class="WHIT">                </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">result.returnValue</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">successCallback</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="KEYW">typeof</span><span class="WHIT"> </span><span class="NAME">successCallback</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="STRN">'function'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>494</span> </span><span class="WHIT">                    </span><span class="NAME">successCallback</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>495</span> </span><span class="WHIT">                    </span><span class="KEYW">return</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>496</span> </span><span class="WHIT">                </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>497</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>498</span> </span><span class="WHIT">            </span><span class="NAME">onFailure</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">result</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>499</span> </span><span class="WHIT">                </span><span class="NAME">log</span><span class="PUNC">(</span><span class="STRN">"setContentRotation: On Failure"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>500</span> </span><span class="WHIT">                </span><span class="KEYW">delete</span><span class="WHIT"> </span><span class="NAME">result.returnValue</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>501</span> </span><span class="WHIT">                </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">errorCallback</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="KEYW">typeof</span><span class="WHIT"> </span><span class="NAME">errorCallback</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="STRN">'function'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>502</span> </span><span class="WHIT">                    </span><span class="NAME">checkErrorCodeNText</span><span class="PUNC">(</span><span class="NAME">result</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"VSCR"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"Video.setContentRotation returns failure."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>503</span> </span><span class="WHIT">                    </span><span class="NAME">errorCallback</span><span class="PUNC">(</span><span class="NAME">result</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>504</span> </span><span class="WHIT">                    </span><span class="KEYW">return</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>505</span> </span><span class="WHIT">                </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>506</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>507</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>508</span> </span><span class="WHIT">        </span><span class="WHIT">
+<span class='line'>509</span> </span><span class="WHIT">        </span><span class="NAME">log</span><span class="PUNC">(</span><span class="STRN">"Video.setContentRotation: Done "</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>510</span> </span><span class="WHIT">        </span><span class="WHIT">
+<span class='line'>511</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>512</span> </span><span class="WHIT">    </span><span class="WHIT">
+<span class='line'>513</span> </span><span class="WHIT">    </span><span class="COMM">/**
+<span class='line'>514</span>      * Gets content rotation status. 
+<span class='line'>515</span>      * @class Video
+<span class='line'>516</span>      * @param {Function} successCallback success callback function.
+<span class='line'>517</span>      * @param {Function} errorCallback failure callback function.
+<span class='line'>518</span>      * @return {Object} 
+<span class='line'>519</span>      * &lt;div align=left>
+<span class='line'>520</span>      * &lt;table class="hcap_spec" width=400>
+<span class='line'>521</span>      *   &lt;thead>&lt;tr>&lt;th>Property&lt;/th>&lt;th>Type&lt;/th>&lt;th>Description&lt;/th>&lt;th>Required&lt;/th>&lt;/tr>&lt;/thead>
+<span class='line'>522</span>      *   &lt;tbody>
+<span class='line'>523</span>      *       &lt;tr>&lt;th>degree&lt;/th>&lt;th>String&lt;/th>&lt;th>"off", "90", or "270"&lt;/th>&lt;th>required&lt;/th>&lt;/tr>
+<span class='line'>524</span>      *       &lt;tr class="odd">&lt;tr>&lt;th>aspectRatio&lt;/th>&lt;th>String&lt;/th>&lt;th>"full" or "original" &lt;/th>&lt;th>required&lt;/th>&lt;/tr>
+<span class='line'>525</span>      *   &lt;/tbody>
+<span class='line'>526</span>      * &lt;/table>
+<span class='line'>527</span>      *
+<span class='line'>528</span>      * @example
+<span class='line'>529</span>      * // Javascript code
+<span class='line'>530</span>      * function getContentRotation () {
+<span class='line'>531</span>      *   function successCb(cbObject) {
+<span class='line'>532</span>      *      console.log("cbObject : " + JSON.stringify(cbObject.source));
+<span class='line'>533</span>      *
+<span class='line'>534</span>      *      console.log("degree : " + cbObject.degree);
+<span class='line'>535</span>      *      console.log("aspectRatio : " + cbObject.aspectRatio);
+<span class='line'>536</span>      *      
+<span class='line'>537</span>      *      // Do something
+<span class='line'>538</span>      *   }
+<span class='line'>539</span>      *
+<span class='line'>540</span>      *   function failureCb(cbObject) {
+<span class='line'>541</span>      *      var errorCode = cbObject.errorCode;
+<span class='line'>542</span>      *      var errorText = cbObject.errorText;
+<span class='line'>543</span>      *      console.log ("Error Code [" + errorCode + "]: " + errorText);
+<span class='line'>544</span>      *   }
+<span class='line'>545</span>      *
+<span class='line'>546</span>      *   var video = new Video();
+<span class='line'>547</span>      *   video.getContentRotation(successCb, failureCb);
+<span class='line'>548</span>      * }
+<span class='line'>549</span>      * @since 1.3
+<span class='line'>550</span>      * @see
+<span class='line'>551</span>      * &lt;a href="Video%23setContentRotation.html">Video.setContentRotation()&lt;/a>&lt;br>
+<span class='line'>552</span>      */</span><span class="WHIT">
+<span class='line'>553</span> </span><span class="WHIT">    </span><span class="NAME">Video.prototype.getContentRotation</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">successCallback</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">errorCallback</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>554</span> 
+<span class='line'>555</span> </span><span class="WHIT">        </span><span class="NAME">log</span><span class="PUNC">(</span><span class="STRN">"getContentRotation: "</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>556</span> </span><span class="WHIT">        </span><span class="WHIT">
+<span class='line'>557</span> </span><span class="WHIT">        </span><span class="NAME">service.Request</span><span class="PUNC">(</span><span class="STRN">"luna://com.webos.service.commercial.signage.storageservice/video/"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>558</span> </span><span class="WHIT">            </span><span class="NAME">method</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"getContentRotation"</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>559</span> </span><span class="WHIT">            </span><span class="NAME">onSuccess</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">result</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>560</span> </span><span class="WHIT">                </span><span class="NAME">log</span><span class="PUNC">(</span><span class="STRN">"getContentRotation: On Success"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>561</span> </span><span class="WHIT">                </span><span class="WHIT">
+<span class='line'>562</span> </span><span class="WHIT">                </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">result.returnValue</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>563</span> </span><span class="WHIT">                    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">successCallback</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="KEYW">typeof</span><span class="WHIT"> </span><span class="NAME">successCallback</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="STRN">'function'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>564</span> </span><span class="WHIT">                        </span><span class="NAME">successCallback</span><span class="PUNC">(</span><span class="NAME">result</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>565</span> </span><span class="WHIT">                    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>566</span> </span><span class="WHIT">                </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>567</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>568</span> </span><span class="WHIT">            </span><span class="NAME">onFailure</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">result</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>569</span> </span><span class="WHIT">                </span><span class="NAME">log</span><span class="PUNC">(</span><span class="STRN">"getContentRotation: On Failure"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>570</span> </span><span class="WHIT">                </span><span class="KEYW">delete</span><span class="WHIT"> </span><span class="NAME">result.returnValue</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>571</span> </span><span class="WHIT">                </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">errorCallback</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="KEYW">typeof</span><span class="WHIT"> </span><span class="NAME">errorCallback</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="STRN">'function'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>572</span> </span><span class="WHIT">                    </span><span class="NAME">checkErrorCodeNText</span><span class="PUNC">(</span><span class="NAME">result</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"VGCR"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"Video.getContentRotation returns failure."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>573</span> </span><span class="WHIT">                    </span><span class="NAME">errorCallback</span><span class="PUNC">(</span><span class="NAME">result</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>574</span> </span><span class="WHIT">                </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>575</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>576</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>577</span> </span><span class="WHIT">        </span><span class="WHIT">
+<span class='line'>578</span> </span><span class="WHIT">        </span><span class="NAME">log</span><span class="PUNC">(</span><span class="STRN">"Video.getContentRotation Done"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>579</span> </span><span class="WHIT">    </span><span class="WHIT">
+<span class='line'>580</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>581</span> </span><span class="WHIT">    </span><span class="WHIT">
+<span class='line'>582</span> </span><span class="WHIT">    </span><span class="NAME">module.exports</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">Video</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>583</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>584</span> 
+<span class='line'>585</span> </span><span class="NAME">Video</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">cordova.require</span><span class="PUNC">(</span><span class="STRN">'cordova/plugin/video'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// jshint ignore:line</span><span class="WHIT">
+<span class='line'>586</span> 
+<span class='line'>587</span> </span></pre></body></html>

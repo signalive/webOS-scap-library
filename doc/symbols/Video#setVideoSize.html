@@ -30,15 +30,21 @@
 	<div class="menu">
 		<div class="indexLinks">
 			<a href="../index.html">Classes</a>
-			<a href="../files.html">Files</a>
+<!--			<a href="../files.html">Files</a> -->
+<!--            <a href="../../release_notes.txt">Release Note</a> -->
 		</div>
-        <table width=100%  class=confidential><tr><td><b>LGE Confidential</b></td></tr></table>	
-	    <h2 class="heading1">Introduction</h2>
+        <table width=100%  class=confidential><tr><td><b>LGE Confidential</b></td></tr></table>
+	    <h2 class="heading1">SCAP 1.3 Introduction</h2>
 	    <table>
 			<tr>
 			  <td align=left class=confidential><a href="../../doc/intro.html">&middot;Introduction</li></a></td>
 			</tr>
 		</table>
+		<table>
+            <tr>
+              <td align=left class=confidential><a href="../../release_notes.txt">&middot;Release note</li></a></td>
+            </tr>
+        </table>
 <!--		
 		<table>
 			<tr>
@@ -55,6 +61,8 @@
 				
 					<li><a href="../symbols/_global_.html">_global_</a></li>
 				
+					<li><a href="../symbols/Configuration%23clearCache.html">Configuration#clearCache</a></li>
+				
 					<li><a href="../symbols/Configuration%23getCurrentTime.html">Configuration#getCurrentTime</a></li>
 				
 					<li><a href="../symbols/Configuration%23getPictureMode.html">Configuration#getPictureMode</a></li>
@@ -64,6 +72,10 @@
 					<li><a href="../symbols/Configuration%23getProperty.html">Configuration#getProperty</a></li>
 				
 					<li><a href="../symbols/Configuration%23getServerProperty.html">Configuration#getServerProperty</a></li>
+				
+					<li><a href="../symbols/Configuration%23getTimeZone.html">Configuration#getTimeZone</a></li>
+				
+					<li><a href="../symbols/Configuration%23getTimeZoneList.html">Configuration#getTimeZoneList</a></li>
 				
 					<li><a href="../symbols/Configuration%23restartApplication.html">Configuration#restartApplication</a></li>
 				
@@ -77,9 +89,15 @@
 				
 					<li><a href="../symbols/Configuration%23setServerProperty.html">Configuration#setServerProperty</a></li>
 				
+					<li><a href="../symbols/Configuration%23setTimeZone.html">Configuration#setTimeZone</a></li>
+				
 					<li><a href="../symbols/Configuration.AppMode.html">Configuration<span class='break'> </span>.<span class='break'> </span>AppMode</a></li>
 				
 					<li><a href="../symbols/Configuration.PictureMode.html">Configuration<span class='break'> </span>.<span class='break'> </span>PictureMode</a></li>
+				
+					<li><a href="../symbols/DeviceInfo%23connectWifi.html">DeviceInfo#connectWifi</a></li>
+				
+					<li><a href="../symbols/DeviceInfo%23getBeaconInfo.html">DeviceInfo#getBeaconInfo</a></li>
 				
 					<li><a href="../symbols/DeviceInfo%23getNetworkInfo.html">DeviceInfo#getNetworkInfo</a></li>
 				
@@ -87,7 +105,25 @@
 				
 					<li><a href="../symbols/DeviceInfo%23getPlatformInfo.html">DeviceInfo#getPlatformInfo</a></li>
 				
+					<li><a href="../symbols/DeviceInfo%23getSoftApInfo.html">DeviceInfo#getSoftApInfo</a></li>
+				
 					<li><a href="../symbols/DeviceInfo%23getSystemUsageInfo.html">DeviceInfo#getSystemUsageInfo</a></li>
+				
+					<li><a href="../symbols/DeviceInfo%23getWifiList.html">DeviceInfo#getWifiList</a></li>
+				
+					<li><a href="../symbols/DeviceInfo%23setBeaconInfo.html">DeviceInfo#setBeaconInfo</a></li>
+				
+					<li><a href="../symbols/DeviceInfo%23setNetworkInfo.html">DeviceInfo#setNetworkInfo</a></li>
+				
+					<li><a href="../symbols/DeviceInfo%23setSoftApInfo.html">DeviceInfo#setSoftApInfo</a></li>
+				
+					<li><a href="../symbols/DeviceInfo%23startWps.html">DeviceInfo#startWps</a></li>
+				
+					<li><a href="../symbols/DeviceInfo%23stopWps.html">DeviceInfo#stopWps</a></li>
+				
+					<li><a href="../symbols/Error.html">Error</a></li>
+				
+					<li><a href="../symbols/Error.ERROR_CODE.html">Error<span class='break'> </span>.<span class='break'> </span>ERROR_CODE</a></li>
 				
 					<li><a href="../symbols/InputSource%23changeInputSource.html">InputSource#changeInputSource</a></li>
 				
@@ -126,6 +162,8 @@
 					<li><a href="../symbols/Power.TimerWeek.html">Power<span class='break'> </span>.<span class='break'> </span>TimerWeek</a></li>
 				
 					<li><a href="../symbols/Signage%23captureScreen.html">Signage#captureScreen</a></li>
+				
+					<li><a href="../symbols/Signage%23enableCheckScreen.html">Signage#enableCheckScreen</a></li>
 				
 					<li><a href="../symbols/Signage%23getFailoverMode.html">Signage#getFailoverMode</a></li>
 				
@@ -225,9 +263,15 @@
 				
 					<li><a href="../symbols/Storage.AppMode.html">Storage<span class='break'> </span>.<span class='break'> </span>AppMode</a></li>
 				
-					<li><a href="../symbols/Video%23getVideoStatus.html">Video#getVideoStatus</a></li>
+					<li><a href="../symbols/Storage.SCAP_URI.html">Storage<span class='break'> </span>.<span class='break'> </span>SCAP_URI</a></li>
 				
-					<li><a href="../symbols/Video%23setVideoSize.html">Video#setVideoSize</a></li>
+					<li><a href="../symbols/Video%23getContentRotation.html">Video#getContentRotation</a></li>
+				
+					 <li><a href="../symbols/Video%23setRotatedVideoTranform.html">Video#setRotatedVideoTranform</a></li>
+                                                                     				
+   					 <li><a href="../symbols/Video%23setVideoSize.html">Video#setVideoSize</a></li>
+
+    					 <li><a href="../symbols/Video%23setVideoViewTransform.html">Video#setVideoViewTransform</a></li>
 				
 			</ul>
 		</nav>
@@ -238,7 +282,7 @@
 			Documentation generator: <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0<br />
 			Template: <a href="http://www.thebrightlines.com/2010/05/06/new-template-for-jsdoctoolkit-codeview/" target="_blank">Codeview</a> 1.2<br />
 			Generated on:
-			<time datetime='2015-2-19' pubdate>2015-2-19 18:16</time>
+			<time datetime='2015-8-18' pubdate>2015-8-18 16:52</time>
 		</footer>
 	</div>
 </div>
@@ -325,13 +369,32 @@
 							</div>
 							
 							<div class="description">
-								Sets video size.<br>Original video(source rectangle) will be adjusted to the full screen size. It can be resized or a zoom effect can be applied to the video.<br>Note : Using more than one video tag in an html page may not be supported due to hardware limitation.
+								Sets video size.<br>
+Original video(source rectangle) will be adjusted to the full screen size. It can be resized or a zoom effect can be applied to the video.
+<br>
+Note : Using more than one video tag in an html page may not be supported due to hardware limitation.
 								
 							</div>
 							
 							
 								
-									<pre class="code prettyprint">// Javascript codefunction setVideoSize () {  var options = {source: {x:10, y:10, width:900, height:600}};      function successCb() {     // Do something  }  function failureCb(cbObject) {     var errorCode = cbObject.errorCode;     var errorText = cbObject.errorText;     console.log ("Error Code [" + errorCode + "]: " + errorText);  }  var video = new Video();  video.setVideoSize(successCb, failureCb, options);}</pre>
+									<pre class="code prettyprint">// Javascript code
+function setVideoSize () {
+  var options = {source: {x:10, y:10, width:900, height:600}};
+    
+  function successCb() {
+     // Do something
+  }
+
+  function failureCb(cbObject) {
+     var errorCode = cbObject.errorCode;
+     var errorText = cbObject.errorText;
+     console.log ("Error Code [" + errorCode + "]: " + errorText);
+  }
+
+  var video = new Video();
+  video.setVideoSize(successCb, failureCb, options);
+}</pre>
 								
 							
 						
@@ -355,7 +418,22 @@
 											<span class="light fixedFont">{Object}</span>  <b>options</b>
 											
 										</dt>
-										<dd>source object vary depending on video resolution.                   And rectangle object has boundary value as : <br>                 source.x + source.width <= width of video resolution , source.y + source.height <= height of video resolution <br>                 x and y value of rectangle are upper than zero. <br><image src="./image/setVideoSize.png"><br><div align=left><table class="hcap_spec" width=400>  <thead><tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr></thead>  <tbody>      <tr><th>source</th><th>Object</th><th>source rectangle of video. </th><th>required</th></tr>      <tr><th>source.x</th><th>Number</th><th>The x coordinate of the upper-left corner of the rectangle. </th><th>required</th></tr>      <tr class="odd"><th>source.y</th><th>Number</th><th>The y coordinate of the upper-left corner of the rectangle. </th><th>required</th></tr>      <tr><th>source.width</th><th>Number</th><th>The width of the rectangle. </th><th>required</th></tr>      <tr class="odd"><th>source.height</th><th>Number</th><th>The height of the rectangle. </th><th>required</th></tr>  </tbody></table></dd>
+										<dd>source object vary depending on video resolution.  
+                 And rectangle object has boundary value as : <br>
+                 source.x + source.width <= width of video resolution , source.y + source.height <= height of video resolution <br>
+                 x and y value of rectangle are upper than zero. 
+<br><image src="./image/setVideoSize.png"><br>
+<div align=left>
+<table class="hcap_spec" width=400>
+  <thead><tr><th>Property</th><th>Type</th><th>Description</th><th>Required</th></tr></thead>
+  <tbody>
+      <tr><th>source</th><th>Object</th><th>source rectangle of video. </th><th>required</th></tr>
+      <tr><th>source.x</th><th>Number</th><th>The x coordinate of the upper-left corner of the rectangle. </th><th>required</th></tr>
+      <tr class="odd"><th>source.y</th><th>Number</th><th>The y coordinate of the upper-left corner of the rectangle. </th><th>required</th></tr>
+      <tr><th>source.width</th><th>Number</th><th>The width of the rectangle. </th><th>required</th></tr>
+      <tr class="odd"><th>source.height</th><th>Number</th><th>The height of the rectangle. </th><th>required</th></tr>
+  </tbody>
+</table></dd>
 									
 								</dl>
 							
@@ -374,7 +452,8 @@
 									
 										<dt class="heading">Returns:</dt>
 										
-												<dd><p>If the method is successfully executed, success callback function is called without a parameter.</br>If an error occurs, failure callback function is called with a failure callback object as a parameter.</p></dd>
+												<dd><p>If the method is successfully executed, success callback function is called without a parameter.</br>
+If an error occurs, failure callback function is called with a failure callback object as a parameter.</p></dd>
 										
 									
 									
@@ -383,7 +462,8 @@
 									
 										<dt class="heading">See:</dt>
 										
-											<dd><a href="Video%23getVideoStatus.html">Video.getVideoStatus()</a><br><a href="InputSource%23initialize.html#constructor">InputSource.initialize()</a><br></dd>
+											<dd><a href="Video%23getVideoStatus.html">Video.getVideoStatus()</a><br>
+<a href="InputSource%23initialize.html#constructor">InputSource.initialize()</a><br></dd>
 										
 									
 								</dl>

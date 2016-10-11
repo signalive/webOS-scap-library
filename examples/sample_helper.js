@@ -9,13 +9,26 @@
 			                 'getProperty',
 			                 'setProperty',
 			                 'getServerProperty',
-			                 'setServerProperty'
+			                 'setServerProperty',
+			                 'clearCache',
+			                 'getTimeZoneList',
+			                 'setTimeZone',
+			                 'getTimeZone'
 							],
 			deviceInfo : [
 			              'getNetworkInfo',
 			              'getNetworkMacInfo',
 			              'getPlatformInfo',
-			              'getSystemUsageInfo'
+			              'getSystemUsageInfo',
+			              'setNetworkInfo',
+			              'getWifiList',
+			              'connectWifi',
+			              'startWps',
+			              'stopWps',
+			              'setBeaconInfo',
+			              'getBeaconInfo',
+			              'setSoftApInfo',
+			              'getSoftApInfo'
 			     			],
 			inputSource : [
 										 'initialize',
@@ -54,7 +67,8 @@
 			           'setUsagePermission',
 			           'getUsagePermission',
 			           'getUsageData',
-			           'captureScreen'
+			           'captureScreen',
+			           'enableCheckScreen'
 				   			],
 			sound : [
 			         'getSoundStatus',
@@ -83,7 +97,9 @@
 						],
 			video : [
 			         'getVideoStatus',
-			         'setVideoSize'
+			         'setVideoSize',
+			         'getContentRotation',
+			         'setContentRotation'
 			         ],
 	};
 	

@@ -14,6 +14,7 @@ function api_getSignageInfo(callback){
 		console.log("portraitMode: " + portraitMode);
 		console.log("ismMethod: " + ismMethod);
 		console.log("digitalAudioInputMode: " + digitalAudioInputMode);
+		console.log("checkScreen: " + cbObject.checkScreen);
 		
 		callback(cbObject);
 	};

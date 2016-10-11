@@ -253,3 +253,140 @@ function api_copy_remote_file(callback){
 	var storage = new Storage();
 	storage.copyFile(successCb, failureCb, options);
 }
+
+function api_copy_ftp_file(callback){
+	// Callback for a successful execution.
+	// This callback will be called without any parameter.		
+	var successCb = function (){
+		console.log("successfully Set");
+		//If this is a local app
+		show_image_from_localapp();
+		
+		//If this is a remote app 
+		show_image_from_remoteapp();
+
+		callback("copy file success");	  	
+
+	};
+
+	// Callback for a failed execution.
+	// Failure callback will be invoked with the error code and the error text.
+	var failureCb = function(cbObject){
+		var errorCode = cbObject.errorCode;
+		var errorText = cbObject.errorText;
+		console.log( " Error Code [" + errorCode + "]: " + errorText); 
+		callback(cbObject);
+	};
+	var storage = new Storage();
+	
+	// copy file parameters.
+	// source : The file to copy from. ftp:// protocol should be used for downloading files from FTP sites. 
+	// username and password should be part of the URI.
+	// destination : This is where this file is copied to. Destination can be the internal memory or usb device.
+	var ftp_options = {
+			source: 'ftp://user:password@remote.ftp.site/file/path/image.png',
+			destination : 'file://internal/image.png',
+	};
+	
+	// Create storage object and invoke the API with parameters.	
+	storage.copyFile(successCb, failureCb, ftp_options);
+	
+	// copy file parameters.
+	// source : The file to copy from. ftps:// protocol should be used for downloading files from FTP sites with TLS/SSL. 
+	// 			username and password should be part of the URI.
+	//			ftpOption.secureOptions.rejectUnauthorized can be used if the ftps server uses self-signed certificate.	
+	// destination : This is where this file is copied to. Destination can be the internal memory or usb device.
+	var ftps_options = {
+			source: 'ftps://user:password@remote.ftp.site/file/path/image.png',
+			destination : 'file://internal/image.png',
+			ftpOption:{
+				secureOptions:{
+					rejectUnauthorized : false,
+				}
+			}
+	};
+	
+	// Create storage object and invoke the API with parameters.	
+	storage.copyFile(successCb, failureCb, ftps_options);
+	
+	// copy file parameters.
+	// source : The file to copy from. sftp:// protocol should be used for downloading files from SFTP site (ssh based FTP). 
+	// 			username and password should be part of the URI.
+	// destination : This is where this file is copied to. Destination can be the internal memory or usb device.
+	var sftp_options = {
+			source: 'sftp://user:password@remote.ftp.site/file/path/image.png',
+			destination : 'file://internal/image.png',
+	};
+	
+	// Create storage object and invoke the API with parameters.	
+	storage.copyFile(successCb, failureCb, sftp_options);
+
+	// copy file parameters.
+	// source : The file to copy from. sftp:// protocol should be used for downloading files from SFTP site (ssh based FTP). 
+	// 			To use key based log in, ftpOption.secureOptions.privatekey should included the key data.
+	//			If this key is protected by passphrase, ftpOption.secureOptions.passphrase should contain the passphrase.
+	// destination : This is where this file is copied to. Destination can be the internal memory or usb device.
+	var key_based_sftp_options = {
+			source: 'sftp://user@remote.ftp.site/file/path/image.png',
+			destination : 'file://internal/image.png',
+			ftpOption:{
+				secureOptions:{
+					  // This parameter should hold the public key data for key based SSH login.
+					  // The key should be openssh format (ex. created using 'ssh-keygen' command).
+					  // The public key should be appended to the /.ssh/authorized_keys file in the sftp server. 
+					  privateKey: PRIVATE_KEY_DATA,
+					  passphrase: "password"
+				}
+			}			
+	};
+	
+	// Create storage object and invoke the API with parameters.	
+	storage.copyFile(successCb, failureCb, key_based_sftp_options);
+}
+
+
+
+//This function will copy a JPG image from remote site to internal memory. 
+//The downloaded file will be displayed in a <img> element.
+//This example will copy from a server which will check the session key in the header before permitting the file download.
+function api_copy_remote_file_header_option(callback){
+	// Callback for a successful execution.
+	// This callback will be called without any parameter.		
+	var successCb = function (){
+		console.log("successfully Set");
+		//If this is a local app
+		show_image_from_localapp();
+		
+		//If this is a remote app 
+		show_image_from_remoteapp();
+
+		callback("copy file success");	  	
+
+	};
+
+	// Callback for a failed execution.
+	// Failure callback will be invoked with the error code and the error text.
+	var failureCb = function(cbObject){
+		var errorCode = cbObject.errorCode;
+		var errorText = cbObject.errorText;
+		console.log( " Error Code [" + errorCode + "]: " + errorText); 
+		callback(cbObject);
+	};
+	
+	// copy file parameters.
+	// source : The file to copy from. This file can be a remote file, a local internal file, or a file in a USB memory stick.
+	// destination : This is where this file is copied to. Destination can be the internal memory or usb device.
+	// headers : extra values that should be included in the head.
+	var header_options = {
+			source: 'http://remote.file.site/image.jpg',
+			destination : 'file://internal/image.jpg',
+			// include the session key in the header.
+			headers: {
+				session_key : "scap111",
+			}
+	};
+	
+	// Create storage object and invoke the API with parameters.	
+	var storage = new Storage();
+	storage.copyFile(successCb, failureCb, header_options);
+}

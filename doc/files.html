@@ -30,15 +30,21 @@
 	<div class="menu">
 		<div class="indexLinks">
 			<a href="index.html">Classes</a>
-			<a href="files.html">Files</a>
+<!--			<a href="files.html">Files</a> -->
+<!--            <a href="../release_notes.txt">Release Note</a> -->
 		</div>
-        <table width=100%  class=confidential><tr><td><b>LGE Confidential</b></td></tr></table>	
-	    <h2 class="heading1">Introduction</h2>
+        <table width=100%  class=confidential><tr><td><b>LGE Confidential</b></td></tr></table>
+	    <h2 class="heading1">SCAP 1.3 Introduction</h2>
 	    <table>
 			<tr>
 			  <td align=left class=confidential><a href="../doc/intro.html">&middot;Introduction</li></a></td>
 			</tr>
 		</table>
+		<table>
+            <tr>
+              <td align=left class=confidential><a href="../release_notes.txt">&middot;Release note</li></a></td>
+            </tr>
+        </table>
 <!--		
 		<table>
 			<tr>
@@ -55,6 +61,8 @@
 				
 					<li><a href="symbols/_global_.html">_global_</a></li>
 				
+					<li><a href="symbols/Configuration%23clearCache.html">Configuration#clearCache</a></li>
+				
 					<li><a href="symbols/Configuration%23getCurrentTime.html">Configuration#getCurrentTime</a></li>
 				
 					<li><a href="symbols/Configuration%23getPictureMode.html">Configuration#getPictureMode</a></li>
@@ -64,6 +72,10 @@
 					<li><a href="symbols/Configuration%23getProperty.html">Configuration#getProperty</a></li>
 				
 					<li><a href="symbols/Configuration%23getServerProperty.html">Configuration#getServerProperty</a></li>
+				
+					<li><a href="symbols/Configuration%23getTimeZone.html">Configuration#getTimeZone</a></li>
+				
+					<li><a href="symbols/Configuration%23getTimeZoneList.html">Configuration#getTimeZoneList</a></li>
 				
 					<li><a href="symbols/Configuration%23restartApplication.html">Configuration#restartApplication</a></li>
 				
@@ -77,9 +89,15 @@
 				
 					<li><a href="symbols/Configuration%23setServerProperty.html">Configuration#setServerProperty</a></li>
 				
+					<li><a href="symbols/Configuration%23setTimeZone.html">Configuration#setTimeZone</a></li>
+				
 					<li><a href="symbols/Configuration.AppMode.html">Configuration<span class='break'> </span>.<span class='break'> </span>AppMode</a></li>
 				
 					<li><a href="symbols/Configuration.PictureMode.html">Configuration<span class='break'> </span>.<span class='break'> </span>PictureMode</a></li>
+				
+					<li><a href="symbols/DeviceInfo%23connectWifi.html">DeviceInfo#connectWifi</a></li>
+				
+					<li><a href="symbols/DeviceInfo%23getBeaconInfo.html">DeviceInfo#getBeaconInfo</a></li>
 				
 					<li><a href="symbols/DeviceInfo%23getNetworkInfo.html">DeviceInfo#getNetworkInfo</a></li>
 				
@@ -87,7 +105,25 @@
 				
 					<li><a href="symbols/DeviceInfo%23getPlatformInfo.html">DeviceInfo#getPlatformInfo</a></li>
 				
+					<li><a href="symbols/DeviceInfo%23getSoftApInfo.html">DeviceInfo#getSoftApInfo</a></li>
+				
 					<li><a href="symbols/DeviceInfo%23getSystemUsageInfo.html">DeviceInfo#getSystemUsageInfo</a></li>
+				
+					<li><a href="symbols/DeviceInfo%23getWifiList.html">DeviceInfo#getWifiList</a></li>
+				
+					<li><a href="symbols/DeviceInfo%23setBeaconInfo.html">DeviceInfo#setBeaconInfo</a></li>
+				
+					<li><a href="symbols/DeviceInfo%23setNetworkInfo.html">DeviceInfo#setNetworkInfo</a></li>
+				
+					<li><a href="symbols/DeviceInfo%23setSoftApInfo.html">DeviceInfo#setSoftApInfo</a></li>
+				
+					<li><a href="symbols/DeviceInfo%23startWps.html">DeviceInfo#startWps</a></li>
+				
+					<li><a href="symbols/DeviceInfo%23stopWps.html">DeviceInfo#stopWps</a></li>
+				
+					<li><a href="symbols/Error.html">Error</a></li>
+				
+					<li><a href="symbols/Error.ERROR_CODE.html">Error<span class='break'> </span>.<span class='break'> </span>ERROR_CODE</a></li>
 				
 					<li><a href="symbols/InputSource%23changeInputSource.html">InputSource#changeInputSource</a></li>
 				
@@ -126,6 +162,8 @@
 					<li><a href="symbols/Power.TimerWeek.html">Power<span class='break'> </span>.<span class='break'> </span>TimerWeek</a></li>
 				
 					<li><a href="symbols/Signage%23captureScreen.html">Signage#captureScreen</a></li>
+				
+					<li><a href="symbols/Signage%23enableCheckScreen.html">Signage#enableCheckScreen</a></li>
 				
 					<li><a href="symbols/Signage%23getFailoverMode.html">Signage#getFailoverMode</a></li>
 				
@@ -225,7 +263,13 @@
 				
 					<li><a href="symbols/Storage.AppMode.html">Storage<span class='break'> </span>.<span class='break'> </span>AppMode</a></li>
 				
+					<li><a href="symbols/Storage.SCAP_URI.html">Storage<span class='break'> </span>.<span class='break'> </span>SCAP_URI</a></li>
+				
+					<li><a href="symbols/Video%23getContentRotation.html">Video#getContentRotation</a></li>
+				
 					<li><a href="symbols/Video%23getVideoStatus.html">Video#getVideoStatus</a></li>
+				
+					<li><a href="symbols/Video%23setContentRotation.html">Video#setContentRotation</a></li>
 				
 					<li><a href="symbols/Video%23setVideoSize.html">Video#setVideoSize</a></li>
 				
@@ -238,7 +282,7 @@
 			Documentation generator: <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0<br />
 			Template: <a href="http://www.thebrightlines.com/2010/05/06/new-template-for-jsdoctoolkit-codeview/" target="_blank">Codeview</a> 1.2<br />
 			Generated on:
-			<time datetime='2015-2-19' pubdate>2015-2-19 18:16</time>
+			<time datetime='2015-8-18' pubdate>2015-8-18 16:52</time>
 		</footer>
 	</div>
 </div>
