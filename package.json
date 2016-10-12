@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/signalive/webOS-scap-library/issues"
   },
-  "homepage": "https://github.com/signalive/webOS-scap-library#readme"
+  "homepage": "https://github.com/signalive/webOS-scap-library#readme",
+  "devDependencies": {
+    "typings": "1.4.0"
+  }
 }
