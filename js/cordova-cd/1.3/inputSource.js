@@ -19,7 +19,7 @@ cordova.define("cordova/plugin/broadcast", function(e, t, n) {
     i.prototype.onchannelchange = function(e) {}, i.prototype.onsignalstatuschange = function(e) {}, i.prototype.initialize = function(e, t, n) {
         a.checkArgs("fFo", "broadcastCordova.initialize", arguments);
         var r = o.clone(n);
-        if (this.broadcastDivId = document.getElementById(r.divId), r.broadcastPlugin = this, 1 != r.isLastInput && r.src) {
+        if (this.broadcastDivId = document.querySelector('div.view .content iframe').contentWindow.document.getElementById(r.divId), r.broadcastPlugin = this, 1 != r.isLastInput && r.src) {
             if (this.isLastInput = !1, -1 != r.src.indexOf("tv://")) 1 == r.isLastChannel ? (this.isLastChannel = !0, r.type = "service/webos-broadcast") : (this.isLastChannel = !1, r.type = "service/webos-broadcast-standalone"), this.currentInput = "tv", this.currentSource = r.src.substr(5);
             else {
                 r.type = "service/webos-external";
